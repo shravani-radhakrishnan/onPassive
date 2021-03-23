@@ -7,7 +7,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
+matchPassword = true;
   formGroup: FormGroup;
 
   firstnameFormGroup: FormGroup;
@@ -16,13 +16,6 @@ export class RegistrationComponent implements OnInit {
   contactFormGroup:FormGroup;
   passwordFormGroup:FormGroup;
   confirmPasswordGroup:FormGroup;
-
-  // steps = [
-  //   {label: 'Confirm your name', content: 'Last name, First name.'},
-  //   {label: 'Confirm your contact information', content: '123-456-7890'},
-  //   {label: 'Confirm your address', content: '1600 Amphitheater Pkwy MTV'},
-  //   {label: 'You are now done', content: 'Finished!'}
-  // ];
 
   /** Returns a FormArray with the name 'formArray'. */
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
@@ -39,7 +32,7 @@ export class RegistrationComponent implements OnInit {
           lastNameFormCtrl: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
         }),
         this.fb.group({
-          contactFormCtrl:['',[Validators.required,Validators.pattern('^[89]\d{7}')]]
+          contactFormCtrl:['',[Validators.required]]
         }),
         this.fb.group({
           passwordFormCtrl:['',Validators.required]
@@ -77,6 +70,15 @@ export class RegistrationComponent implements OnInit {
 
   submitForm(){
     console.log(this.formGroup.value.formArray);
+    if(this.formGroup.value.formArray.passwordFormCtrl == this.formGroup.value.formArray.confirmPasswordFormCtrl){
+      this.matchPassword = false;
+    }
+  }
+
+  onChangeData(){
+    if(this.formGroup.value.formArray.passwordFormCtrl == this.formGroup.value.formArray.confirmPasswordFormCtrl){
+      this.matchPassword = false;
+    }
   }
 
 }

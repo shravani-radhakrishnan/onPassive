@@ -29,7 +29,7 @@
         <ng-template matStepLabel>Fill out your contact number</ng-template>
         <mat-form-field>
             <mat-label>Contact number</mat-label>
-            <input matInput formControlName="contactFormCtrl" required>
+            <input matInput formControlName="contactFormCtrl" required pattern="^[789]\d{9}$">
             <mat-error>This field is required</mat-error>
           </mat-form-field>
           <div>
@@ -40,7 +40,7 @@
         <ng-template matStepLabel>Fill out your password </ng-template>
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput formControlName="passwordFormCtrl" required>
+            <input matInput formControlName="passwordFormCtrl" required (change)="onChangeData()">
             <mat-error>This field is required</mat-error>
           </mat-form-field>
           <div>
@@ -51,7 +51,7 @@
         <ng-template matStepLabel>Confirm Password</ng-template>
         <mat-form-field>
             <mat-label>Confirm Password</mat-label>
-            <input matInput formControlName="confirmPasswordFormCtrl" required>
+            <input matInput formControlName="confirmPasswordFormCtrl" required (change)="onChangeData()">
             <mat-error>This field is required</mat-error>
           </mat-form-field>
           <div>
@@ -78,7 +78,7 @@
       <ng-template matStepLabel>Confirm your information</ng-template>
       Everything seems correct.
       <div>
-        <button mat-button (click)="submitForm()" [disabled]="!formGroup.valid">Done</button>
+        <button mat-button (click)="submitForm()" [disabled]="!formGroup.valid && matchPassword">Done</button>
         <button type="button" mat-button (click)="linearVerticalStepper.reset()">Reset</button>
       </div>
     </mat-step>
