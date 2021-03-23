@@ -1,8 +1,8 @@
-<h3>Linear Vertical Stepper Demo using a single form</h3>
+<h3>Registration form</h3>
 <form [formGroup]="formGroup">
   <mat-vertical-stepper #linearVerticalStepper="matVerticalStepper" formArrayName="formArray" [linear]="false">
     <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
-      <ng-template matStepLabel>Fill out your first name</ng-template>
+      <ng-template matStepLabel>First name</ng-template>
       <mat-form-field>
         <mat-label>First name</mat-label>
         <input matInput formControlName="firstNameFormCtrl" required>
@@ -14,7 +14,7 @@
     </mat-step>
 
     <mat-step formGroupName="1" [stepControl]="formArray?.get([1])">
-        <ng-template matStepLabel>Fill out your last name</ng-template>
+        <ng-template matStepLabel>Last name</ng-template>
         <mat-form-field>
             <mat-label>Last name</mat-label>
             <input matInput formControlName="lastNameFormCtrl" required>
@@ -26,7 +26,7 @@
     </mat-step>
 
     <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
-        <ng-template matStepLabel>Fill out your contact number</ng-template>
+        <ng-template matStepLabel>Contact number</ng-template>
         <mat-form-field>
             <mat-label>Contact number</mat-label>
             <input matInput formControlName="contactFormCtrl" required pattern="^[789]\d{9}$">
@@ -37,7 +37,7 @@
           </div>
     </mat-step>
     <mat-step formGroupName="3" [stepControl]="formArray?.get([3])">
-        <ng-template matStepLabel>Fill out your password </ng-template>
+        <ng-template matStepLabel>Password </ng-template>
         <mat-form-field>
             <mat-label>Password</mat-label>
             <input matInput formControlName="passwordFormCtrl" required (change)="onChangeData()">
@@ -75,13 +75,12 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>Confirm your information</ng-template>
-      Everything seems correct.
+      <ng-template matStepLabel>Submit the form Details</ng-template>
       <div>
-        <button mat-button (click)="submitForm()" [disabled]="!formGroup.valid && matchPassword">Done</button>
+        <button mat-button (click)="submitForm()" [disabled]="!formGroup.valid && matchPassword">Submit</button>
         <button type="button" mat-button (click)="linearVerticalStepper.reset()">Reset</button>
       </div>
-    </mat-step>
+      </mat-step>
   </mat-vertical-stepper>
 </form>
 
